@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice</title>
+</head>
+<body>
+    <h1>Invoice for {{ order.customerName }}</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in order.products %}
+                <tr>
+                    <td>{{ product.productName }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>₹{{ product.price }}</td>
+                    <td>₹{{ product.amount }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total: ₹{{ order.products | sum(attribute='amount') }}</h3>
+</body>
+</html>
